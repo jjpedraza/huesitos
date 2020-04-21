@@ -1,3 +1,13 @@
+<?php include ("_main/head.php");?>
+<?php include ("_main/menu.php");?>
+
 <?php
-//Iniciando
+
 ?>
+
+<?php
+
+	
+?>
+
+<?php include ("_main/footer.php");?>

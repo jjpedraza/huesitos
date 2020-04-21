@@ -1,0 +1,15 @@
+@font-face{font-family:"Regular";src:url("HelveticaNeueLTStd-Lt.otf") format("truetype")}
+@font-face{font-family:"Light";src:url("OpenSans-Light.ttf") format("truetype")}
+@font-face{font-family:"ExtraBold";src:url("HelveticaNeueLTStd-Bd.otf") format("truetype")}
+@font-face{font-family:"Compacta";src:url("Abel-Regular.ttf") format("truetype")}
+@font-face{font-family:"Cursiva";src:url("Windsong.ttf") format("truetype")}
+@font-face{font-family:"Informal";src:url("CFCrayons-Regular.ttf") format("truetype")}
+@font-face{font-family:"Bold";src:url("OpenSans-ExtraBold.ttf") format("truetype")}
+
+
+body {
+	margin: 0px;
+	background-color: #fafafa;
+	color: gray;
+	font-family: Regular;
+}
