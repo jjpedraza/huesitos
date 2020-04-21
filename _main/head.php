@@ -1,6 +1,6 @@
 <?php
 require("./_config.php");
-require("./components.php");
+require("./_components.php");
 
 ?>
 
