@@ -6,7 +6,6 @@
 @font-face{font-family:"Informal";src:url("CFCrayons-Regular.ttf") format("truetype")}
 @font-face{font-family:"Bold";src:url("OpenSans-ExtraBold.ttf") format("truetype")}
 
-
 body {
 	margin: 0px;
 	background-color: #fafafa;
@@ -57,6 +56,10 @@ hr {
 .btn-Danger:hover{box-shadow:0 1px #9F3139;background-color:#DC4450;top:2px;}
 .btn-Danger:active{box-shadow:0 0 #9F3139;top:6px;}
 
+h1, h2, h3, h4, h5, h6 {
+	color: #4C0066;
+	font-family: ExtraBold;
+}
 
 form {
 	width:100%;
@@ -91,6 +94,23 @@ form input {
 	color: white;
 	font-size: 9pt;
 }
+
+#BarraTitulo{
+	width:100%;
+	background-color:rgba(0, 0, 0, 0.05);
+	box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+#app_contenedor{display:grid;grid-template-columns:25% 25% 25% 25%;margin:0px;align-items:stretch;justify-items:stretch;justify-content:center;align-content:center;background-color:transparent;}
+.aplicaciones{border-radius:2px;background-color:white;background-color:rgb(255,255,255);border:1px #DFE0E2 solid;vertical-align:top;overflow:hidden;margin:10px;border-radius:4px;background-image:linear-gradient(#ddd,white,#e9e6e6);-webkit-box-shadow:0px 3px 6px 0px rgba(0,0,0,0.75);-moz-box-shadow:0px 3px 6px 0px rgba(0,0,0,0.75);box-shadow:0px 3px 6px 0px rgba(0,0,0,0.75)}
+.aplicaciones label{position:relative;top:0px}
+.aplicaciones article{width:96%;display:inline-block;margin:5px;padding:0px;vertical-align:top;border-radius:5px;background-color:rgba(225,225,225,.9)}
+.aplicaciones:hover{transition:all .1s ease-in-out}
+.aplicaciones article:hover{background-color:#A2C30D;transition:all .2s ease-in-out}
+
+
+
 @media only screen and (max-width:800px){
 
 	

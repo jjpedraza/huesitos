@@ -43,6 +43,8 @@ $theme = "_themes/default/default.css";
     {//Datos del Registro de la Empresa
 
 		$LogoFile = $Empresa['Logotipo_url'];
+		$EmpresaNombre = $Empresa['Nombre'];
+		$EmpresaDescripcion = $Empresa['Descripcion'];
 		
 		
 		//Activar bases de datos del cliente
