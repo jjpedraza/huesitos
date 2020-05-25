@@ -31,20 +31,39 @@ if (isset($_GET['home'])){//principal
     // Presentacion de Apps
     echo "<div id='app_contenedor' >";
         
+    $sql = "        
+    select DISTINCT idapcat, Categoria from MisApps
+    where IdUser = '".$IdUser."' and  AppEstado = 0 and idapcat<>''
+    order by Categoria
+    ";
 
-        $r = $db0 -> query("select * from app_categorias"); 	
-        while($f = $r -> fetch_array())
+        $r = $db0 -> query($sql); 	
+        while($fCat = $r -> fetch_array())
         {//Datos del Registro de la Empresa
             echo "<section class='aplicaciones'>";
-            echo "<Label>".$f['nombre']."</label>";
-
+            echo "<Label class='CategoriaNombre'>".$fCat['Categoria']."</label>";
+            $sql2 = "select * from MisApps
+            where IdUser = '".$IdUser."' and  AppEstado = 0 and idapcat='".$fCat['idapcat']."'";
+            $r2 = $db0 -> query($sql2); 	
+            while($fApp = $r2 -> fetch_array())
+            {
                 echo "<article>";
-                    echo "App 1";
-                echo "</article>";
+                    echo "<table>";
+                    echo "<tr>";
+                    echo "<td><img src='_icons/".$fApp['AppIcono']."' style='width:32px'></td>";
+                    echo "<td>";
+                    echo "<b>".$fApp['AppNombre']."</b>";
+                    echo "<cite>".$fApp['AppDescripcion']."</cite>";
 
-                echo "<article>";
-                    echo "App 2";
+                    echo "</td>";
+                    
+                    echo "</tr>";
+                    echo "</table>";
                 echo "</article>";
+            }
+                
+
+                
             echo "</section>";
         
 

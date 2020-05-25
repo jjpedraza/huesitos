@@ -2,6 +2,8 @@
 require("./_config.php");
 require("./_components.php");
 
+$IdUser = "2809";
+
 ?>
 
 <!DOCTYPE html>
