@@ -6,6 +6,16 @@
 @font-face{font-family:"Informal";src:url("CFCrayons-Regular.ttf") format("truetype")}
 @font-face{font-family:"Bold";src:url("OpenSans-ExtraBold.ttf") format("truetype")}
 
+.HomeMovil{
+	display: none;
+}
+.HomePC{
+	display: inline-block;
+	width: 100%;
+}
+.Logo {
+	width:200px;
+}
 body {
 	margin: 0px;
 	background-color: #fafafa;
@@ -102,11 +112,27 @@ form input {
 }
 
 
-#app_contenedor{display:grid;grid-template-columns:25% 25% 25% 25%;margin:0px;align-items:stretch;justify-items:stretch;justify-content:center;align-content:center;background-color:transparent;}
-.aplicaciones{border-radius:2px;background-color:white;background-color:rgb(255,255,255);border:1px #DFE0E2 solid;vertical-align:top;overflow:hidden;margin:10px;border-radius:4px;background-image:linear-gradient(#ddd,white,#e9e6e6);-webkit-box-shadow:0px 3px 6px 0px rgba(0,0,0,0.75);-moz-box-shadow:0px 3px 6px 0px rgba(0,0,0,0.75);box-shadow:0px 3px 6px 0px rgba(0,0,0,0.75)}
+#app_contenedor{display:grid;grid-template-columns:25% 25% 25% 25%;margin:0px;align-items:stretch;justify-items:stretch;justify-content:center;align-content:center;background-color:transparent;
+margin-top:30px;
+}
+.aplicaciones{border-radius:2px;
+	
+	
+	border:1px #DFE0E2 solid;
+	vertical-align:top;
+	overflow:hidden;
+	margin:5px;
+	border-radius:4px;
+	background-color:rgb(241, 241, 241);
+	
+}
 .aplicaciones label{position:relative;top:0px}
-.aplicaciones article{width:96%;display:inline-block;margin:5px;padding:0px;vertical-align:top;border-radius:5px;background-color:rgba(225,225,225,.9)}
-.aplicaciones:hover{transition:all .1s ease-in-out}
+.aplicaciones article{width:97%;display:inline-block;margin:5px;padding:0px;vertical-align:top;border-radius:5px;
+background-color:rgb(250, 250, 250);
+}
+.aplicaciones:hover{transition:all .1s ease-in-out;
+	
+}
 .aplicaciones article:hover{background-color:#A2C30D;transition:all .2s ease-in-out}
 
 .CategoriaNombre {
@@ -117,9 +143,31 @@ form input {
 	display: inline-block;
 }
 
-@media only screen and (max-width:800px){
+.AppMenuTitulo{
+width:100%;
+font-family: REgular;
+font-size:11pt;
+color:black;
+display:inline-block;
+}
+.AppMenuDescripcion {
+	font-size:8pt;
+	font-family:Compacta;
+	color:gray;
+	width:100%;
+	cursor:help;
 
+
+}
+@media only screen and (max-width:800px){
+	#app_contenedor{display:grid;grid-template-columns:45% 45%;margin:0px;align-items:stretch;justify-items:stretch;justify-content:center;align-content:center;background-color:transparent;
+		margin-top:30px;
+		}
 	
+	.Logo{width:120px;}
+	.HomeWidget{
+		display: none;
+	}
 form {
 	width:100%;
 	text-align: center;
@@ -146,5 +194,39 @@ form input {
 	border-radius: 5px;
 
 }
+.HomeMovil{
+	display: none;
+}
+.HomePC{
+	display: inline-block;
+}
 
+}
+
+@media only screen and (max-width:600px){
+	#app_contenedor{display:grid;grid-template-columns:96%;margin:0px;align-items:stretch;justify-items:stretch;justify-content:center;align-content:center;background-color:transparent;
+		margin-top:30px;
+		}
+	.Logo{
+		width:50%;
+		padding:10px;
+	}
+	.HomeMovil{
+		display: inline-block;
+	}
+	.HomePC{
+		display: none;
+	}
+	#BarraTitulo{
+		width: 100%;
+		background-color: rgb(76, 0, 102);
+		box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.2);
+		color:white;
+		text-align: center;
+
+	}
+	#BarraTitulo img {
+		filter: grayscale(50%) saturate(0) brightness(200%) contrast(189%);
+		-webkit-filter: grayscale(0%) saturate(0) brightness(900%) contrast(100%);
+	}
 }

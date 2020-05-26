@@ -2,25 +2,36 @@
 <?php
 if (isset($_GET['home'])){//principal
     echo "<div id='BarraTitulo'>";
-    echo "<table width=100% border=0>";
-    echo "<tr>";
+    echo "<div class='HomePC'>";
+    echo "<table width=100% border=0 id='t2'>";
+    echo "<tr>";    
     echo "<td width=200px>";
-    echo "<a href='?home='><img src='".$LogoFile."' style='width:200px;'></a>";
+    echo "<a href='?home='><img src='".$LogoFile."' class='Logo'></a>";
     echo "</td>";
 
-    echo "<td align=center valing=top>";
+    echo "<td align=center valing=top class='HomeTitulo'>";
+    
     echo "<h1 style='margin:0px;'>".$EmpresaNombre."</h1>";
     echo "<cite style='font-size:10pt;'>".$EmpresaDescripcion."</cite>";
 
     echo "</td>";
 
 
-    echo "<td align=center valing=top>";
+    echo "<td align=center valing=top class='HomeWidget'>";
     echo "Widgtet";
     echo "</td>";
-
-    echo "</tr>";
+    echo "</tr>";    
     echo "</table>";
+    echo "</div>";
+
+
+    //Para moviles
+    echo "<div class='HomeMovil'>";
+  
+    echo "<a href='?home='><img src='".$LogoFile."' class='Logo'></a>";
+    echo "</td>";
+
+    echo "</div>";
 
     echo  "</div>";
 
@@ -45,15 +56,20 @@ if (isset($_GET['home'])){//principal
             $sql2 = "select * from MisApps
             where IdUser = '".$IdUser."' and  AppEstado = 0 and idapcat='".$fCat['idapcat']."'";
             $r2 = $db0 -> query($sql2); 	
+            $title=""; $AppVinculo="";
             while($fApp = $r2 -> fetch_array())
             {
                 echo "<article>";
-                    echo "<table>";
-                    echo "<tr>";
-                    echo "<td><img src='_icons/".$fApp['AppIcono']."' style='width:32px'></td>";
+                    echo "<table width=100% border=0>";
+                    $title="IdApp = ".$fApp['IdApp'].", Tienes acceso desde ".$fApp['fecha_autorizacion'].", Nivel=".$fApp['nivel'];    
+                    $AppVinculo = $fApp['AppVinculo'];
+                    echo "<tr title='".$title."'>";
+                    echo "<td width=50px><a href='".$AppVinculo."' title='Haga clic aqui para Entrar a esta Aplicacion'>
+                    <img src='_icons/".$fApp['AppIcono']."' style='width:32px'></a></td>";
                     echo "<td>";
-                    echo "<b>".$fApp['AppNombre']."</b>";
-                    echo "<cite>".$fApp['AppDescripcion']."</cite>";
+                    echo "<a href='".$AppVinculo."' style=' display:block;width:100%;' title='Haga Clic aqui para entrar a esta App'>
+                     <b class='AppMenuTitulo'>".$fApp['AppNombre']."</b></a>";
+                    echo "<cite class='AppMenuDescripcion'>".$fApp['AppDescripcion']."</cite>";
 
                     echo "</td>";
                     
