@@ -13,7 +13,7 @@ $Empresa_domicilio = "Cd. Victoria, Tamaulipas";
 
 
 //TEMA POR DEFECTO
-$theme = "_themes/default/default.css";
+$theme = "themes/default/default.css";
 
 
 //CONEXION

@@ -1,5 +1,5 @@
-<?php include ("_main/head.php");?>
-<?php include ("_main/menu.php");?>
+<?php include ("main/head.php");?>
+<?php include ("main/menu.php");?>
 
 <?php
 
@@ -11,4 +11,4 @@
 	
 ?>
 
-<?php include ("_main/footer.php");?>
+<?php include ("main/footer.php");?>

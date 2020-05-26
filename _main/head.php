@@ -1,6 +1,6 @@
 <?php
-require("./_config.php");
-require("./_components.php");
+require("./config.php");
+require("./components.php");
 
 $IdUser = "2809";
 

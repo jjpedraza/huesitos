@@ -386,8 +386,8 @@ require("_config.php");
 			switch ($Gtype) {
 				case 0:
 											//GRAFICA PIE CHART
-						require_once ("_lib/jpgraph/jpgraph.php");
-						require_once ("_lib/jpgraph/jpgraph_pie.php");
+						require_once ("lib/jpgraph/jpgraph.php");
+						require_once ("lib/jpgraph/jpgraph_pie.php");
 						$data = $Values; //Array para vaalues
 						$dataLabels = $LabelData;  //Valor en las etiquetas
 						$labels = $Labels; //mas info
