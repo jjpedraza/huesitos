@@ -87,7 +87,10 @@ $theme = "themes/default/default.css";
 	
 	
 	
-	
+	$fecha = date('Y-m-d');
+	$hora =  date ("H:i:s");
+
+	$SesionName="Hu3s1t05";
 	
 
 	

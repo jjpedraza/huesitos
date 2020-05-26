@@ -6,6 +6,27 @@
 @font-face{font-family:"Informal";src:url("CFCrayons-Regular.ttf") format("truetype")}
 @font-face{font-family:"Bold";src:url("OpenSans-ExtraBold.ttf") format("truetype")}
 
+#Login h1 {
+	color: #FFFFFF;
+	text-shadow: #474747 3px 5px 2px;
+}
+
+#Login p {
+	color: #FFFFFF;
+	text-shadow: #474747 3px 5px 2px;
+}
+#Informatica{
+	background-color: rgba(255,255,255,0.5);
+	width: 300px;
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	border-radius: 5px;
+	color: black;
+	font-size: 10pt;
+	padding: 10px;
+}
+
 .HomeMovil{
 	display: none;
 }

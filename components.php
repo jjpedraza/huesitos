@@ -30,7 +30,7 @@ function DynamicTable_MySQL($sql, $IdDiv, $IdTabla, $Clase, $Tipo, $db){
 	//$sql = "select * from Colorines limit 20";
 	//DynamicTable_MySQL($sql, "Colorines", "Colorines_Tabla", "Colorines_ClaseCSS", 0, 0);
 
-	require("_config.php");
+	require("config.php");
 	
 	if ($db == 0){
         $r= $db0 -> query($sql);
@@ -381,7 +381,7 @@ function Toast($Texto,$Tipo,$img){
 
 
 function GenerarGrafica($IdUser, $Token, $Gtype, $File, $Values, $LabelData, $Labels){
-require("_config.php");
+require("config.php");
 
 			switch ($Gtype) {
 				case 0:
@@ -441,11 +441,11 @@ require("_config.php");
 					$labels = array();
 					// echo $Gsql;
 					switch ($BD) {
-						case "P": $r = $conexion -> query($Gsql);break;
+						case "P": $r = $db0 -> query($Gsql);break;
 						case "V": $r = $Vivienda -> query($Gsql); break;		
-						default: $r = $conexion -> query($Gsql);break;	
+						default: $r = $db0 -> query($Gsql);break;	
 					}
-					// $r= $conexion -> query($Gsql);
+					// $r= $db0 -> query($Gsql);
 					// var_dump($r);
 					while($fv = $r -> fetch_array()) {//asi deben estar las consultas
 						array_push ($datay, $fv['Valor']);
@@ -511,4 +511,256 @@ require("_config.php");
 	}
 }
 
+
+
+// FUNCIONES PARA MEJORAR LA SEGURIDAD
+function ValidaVAR($valor){
+    $output = TRUE;
+    $peligro = "SCRIPT"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "<"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "script"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = ">"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "SELECT"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "COPY"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "DROP"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "DUMP"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    // $peligro = "OR"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "LIKE"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "'"; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+    $peligro = "\""; if(preg_match('/'.$peligro.'/i', $valor)){ $output = FALSE; } 
+
+    return $output;
+}
+
+function LimpiarVAR($valor){
+    $output = LimpiarVAR_FrontEnd($valor);
+	$output = LimpiarVAR_BackEnd($valor);
+	$output =  LimpiarComillas($valor);
+    return $output;
+}
+
+        
+
+function LimpiarComillas($valor)
+{
+	
+	$valor = addslashes($valor);     
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	$valor = str_ireplace("'","",$valor);
+	$valor = str_ireplace('"',"",$valor);
+	
+	
+	return $valor;
+}
+
+
+    function LimpiarVAR_BackEnd($valor)
+    {
+        
+        $valor = addslashes($valor);     
+        $valor = str_ireplace("SELECT","",$valor);
+        $valor = str_ireplace("COPY","",$valor);
+        $valor = str_ireplace("DELETE","",$valor);
+        $valor = str_ireplace("DROP","",$valor);
+        $valor = str_ireplace("DUMP","",$valor);
+        // $valor = str_ireplace(" OR ","",$valor);
+        $valor = str_ireplace("%","",$valor);
+        $valor = str_ireplace("LIKE","",$valor);
+        $valor = str_ireplace("--","",$valor);
+        $valor = str_ireplace("^","",$valor);
+        $valor = str_ireplace("[","",$valor);
+        $valor = str_ireplace("]","",$valor);	
+        $valor = str_ireplace("!","",$valor);
+        $valor = str_ireplace("¡","",$valor);
+        $valor = str_ireplace("?","",$valor);
+        $valor = str_ireplace("=","",$valor);
+        $valor = str_ireplace("&","",$valor);
+        $valor = str_ireplace("<SCRIPT>","",$valor);
+        $valor = str_ireplace("<script>","",$valor);
+        $valor = str_ireplace(">","",$valor);
+        $valor = str_ireplace("<","",$valor);
+        
+        return $valor;
+    }
+
+   
+    function LimpiarVAR_FrontEnd($input) {
+     
+      $search = array(
+        '@<script[^>]*?>.*?</script>@si',   // Elimina javascript
+        '@<[\/\!]*?[^<>]*?>@si',            // Elimina las etiquetas HTML
+        '@<style[^>]*?>.*?</style>@siU',    // Elimina las etiquetas de estilo
+        '@<![\s\S]*?--[ \t\n\r]*>@'         // Elimina los comentarios multi-línea
+      );
+     
+        $output = preg_replace($search, '', $input);
+        return $output;
+      }
+     
+    function sanitize($input) {
+        if (is_array($input)) {
+            foreach($input as $var=>$val) {
+                $output[$var] = sanitize($val);
+            }
+        }
+        else {
+            if (get_magic_quotes_gpc()) {
+                $input = stripslashes($input);
+            }
+            $input  = cleanInput($input);
+            $output = mysql_real_escape_string($input);
+        }
+        return $output;
+	}
+	
+
+
+
+    function SESSION_init($id, $user, $session_name, $session_comentario, $ip){
+        require("config.php");	
+        $sql = "INSERT INTO sessiones (id, session_name,  usuario, fecha, hora, comentarios,ipcliente) 
+        VALUES ('".$id."', '".$session_name."', '".$user."', '".$fecha."', '".$hora."', '".$session_comentario."', '".$ip."')";
+        // mensaje($sql,'login.php');
+            if ($db0->query($sql) == TRUE)
+                {return TRUE;}
+            else {return FALSE;}
+    }
+    
+    
+    function SESSION_close($id){
+        require("config.php");
+        $sql="UPDATE sessiones  SET cierre_fecha='".$fecha."', cierre_hora='".$hora."'  WHERE id='".$id."'";
+        // //echo $sql;
+        if ($db0->query($sql) == TRUE)
+            {return TRUE;}
+        else {return FALSE;}
+    }
+    
+    
+    function SESSION_tiempo($id){
+        require("config.php");
+        $sql = 'SELECT TIMEDIFF(CURTIME(), hora) as transcurrido, sessiones.* from sessiones where id="'.$id.'"' ;
+        // //echo $sql;
+        $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
+                return $f['transcurrido'];
+        }else{
+                return FALSE;
+        }
+            
+    
+    }
+    
+    
+    
+    function SESSION_tiempoRound($id){
+        require("config.php");
+        $sql = 'SELECT ROUND(TIMEDIFF(CURTIME(), hora)) as transcurrido, sessiones.* from sessiones where id="'.$id.'"' ;
+        // //echo $sql;
+        $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
+                return $f['transcurrido'];
+        }else{
+                return FALSE;
+        }
+            
+    
+    }
+    
+
+
+    function InfoEquipo()
+    {
+        $browser=array("IE","OPERA","MOZILLA","NETSCAPE","FIREFOX","SAFARI","CHROME");
+        $os=array("WIN","MAC","LINUX");
+        # definimos unos valores por defecto para el navegador y el sistema operativo
+        $info['browser'] = "OTHER";
+        $info['os'] = "OTHER";
+        # buscamos el navegador con su sistema operativo
+        foreach($browser as $parent)
+        {
+        $s = strpos(strtoupper($_SERVER['HTTP_USER_AGENT']), $parent);
+        $f = $s + strlen($parent);
+        $version = substr($_SERVER['HTTP_USER_AGENT'], $f, 15);
+        $version = preg_replace('/[^0-9,.]/','',$version);
+        if ($s)
+        {
+        $info['browser'] = $parent;
+        $info['version'] = $version;
+        
+        }
+        }
+        # obtenemos el sistema operativo
+        foreach($os as $val)
+        {
+        if (strpos(strtoupper($_SERVER['HTTP_USER_AGENT']),$val)!==false)
+        $info['os'] = $val;
+        }
+        # devolvemos el array de valores
+        if (getenv('HTTP_CLIENT_IP')) {
+            $ip = getenv('HTTP_CLIENT_IP');
+          } elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+          } elseif (getenv('HTTP_X_FORWARDED')) {
+            $ip = getenv('HTTP_X_FORWARDED');
+          } elseif (getenv('HTTP_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_FORWARDED_FOR');
+          } elseif (getenv('HTTP_FORWARDED')) {
+            $ip = getenv('HTTP_FORWARDED');
+          } else {
+            // Método por defecto de obtener la IP del usuario
+            // Si se utiliza un proxy, esto nos daría la IP del proxy
+            // y no la IP real del usuario.
+            $ip = $_SERVER['REMOTE_ADDR'];
+          }
+        //echo getenv('HTTP_CLIENT_IP');
+        //echo getenv('HTTP_X_FORWADED_FOR');
+        //echo getenv('REMOTE_ADDR');
+        $infofull="";
+        //$infofull = $infofull. "Usuario: ".gethostname()."<br>";
+        $infofull = $infofull. "SO:".$info['os'].",";
+        $infofull = $infofull. "Navegador: ".$info['browser'].",";
+        $infofull = $infofull. "Version:".$info['version']."";
+        // $infofull = $infofull. "".$_SERVER['HTTP_USER_AGENT']."<br>";
+        
+        $red = "";
+        // if ($ip <> '' ){$red = $red."ip:".$ip;	}
+        if (strlen(getenv('HTTP_CLIENT_IP')) > 3 ){$red = $red." ".getenv('HTTP_CLIENT_IP');}
+        if (strlen(getenv('HTTP_X_FORWADED_FOR')) > 3 ){$red = $red.", ".getenv('HTTP_X_FORWADED_FOR');}
+        if (strlen(getenv('REMOTE_ADDR')) > 3 ){$red = $red.", ".getenv('REMOTE_ADDR');}
+    
+        if ($red <> ''){
+            $infofull = $infofull.", Red: (".$red.")";
+        }
+        
+        
+        
+        
+        return $infofull;
+    }
 ?>

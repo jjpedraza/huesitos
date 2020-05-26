@@ -1,6 +1,7 @@
 <?php
-require("./_config.php");
-require("./_components.php");
+include("seguridad.php");
+require("./config.php");
+require("./components.php");
 
 $IdUser = "2809";
 
@@ -10,7 +11,7 @@ $IdUser = "2809";
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title><?php echo $Empresa_title;?></title>
+	<title><?php echo $EmpresaNombre;?></title>
 
 	<link rel="stylesheet" href="<?php echo $theme; ?>"/>
 	<script src="lib/jquery-3.3.1.js"></script> 
