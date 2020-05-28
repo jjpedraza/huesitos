@@ -581,186 +581,254 @@ function LimpiarComillas($valor)
 }
 
 
-    function LimpiarVAR_BackEnd($valor)
-    {
-        
-        $valor = addslashes($valor);     
-        $valor = str_ireplace("SELECT","",$valor);
-        $valor = str_ireplace("COPY","",$valor);
-        $valor = str_ireplace("DELETE","",$valor);
-        $valor = str_ireplace("DROP","",$valor);
-        $valor = str_ireplace("DUMP","",$valor);
-        // $valor = str_ireplace(" OR ","",$valor);
-        $valor = str_ireplace("%","",$valor);
-        $valor = str_ireplace("LIKE","",$valor);
-        $valor = str_ireplace("--","",$valor);
-        $valor = str_ireplace("^","",$valor);
-        $valor = str_ireplace("[","",$valor);
-        $valor = str_ireplace("]","",$valor);	
-        $valor = str_ireplace("!","",$valor);
-        $valor = str_ireplace("¡","",$valor);
-        $valor = str_ireplace("?","",$valor);
-        $valor = str_ireplace("=","",$valor);
-        $valor = str_ireplace("&","",$valor);
-        $valor = str_ireplace("<SCRIPT>","",$valor);
-        $valor = str_ireplace("<script>","",$valor);
-        $valor = str_ireplace(">","",$valor);
-        $valor = str_ireplace("<","",$valor);
-        
-        return $valor;
-    }
-
-   
-    function LimpiarVAR_FrontEnd($input) {
-     
-      $search = array(
-        '@<script[^>]*?>.*?</script>@si',   // Elimina javascript
-        '@<[\/\!]*?[^<>]*?>@si',            // Elimina las etiquetas HTML
-        '@<style[^>]*?>.*?</style>@siU',    // Elimina las etiquetas de estilo
-        '@<![\s\S]*?--[ \t\n\r]*>@'         // Elimina los comentarios multi-línea
-      );
-     
-        $output = preg_replace($search, '', $input);
-        return $output;
-      }
-     
-    function sanitize($input) {
-        if (is_array($input)) {
-            foreach($input as $var=>$val) {
-                $output[$var] = sanitize($val);
-            }
-        }
-        else {
-            if (get_magic_quotes_gpc()) {
-                $input = stripslashes($input);
-            }
-            $input  = cleanInput($input);
-            $output = mysql_real_escape_string($input);
-        }
-        return $output;
-	}
-	
+function LimpiarVAR_BackEnd($valor)
+{
+    
+    $valor = addslashes($valor);     
+    $valor = str_ireplace("SELECT","",$valor);
+    $valor = str_ireplace("COPY","",$valor);
+    $valor = str_ireplace("DELETE","",$valor);
+    $valor = str_ireplace("DROP","",$valor);
+    $valor = str_ireplace("DUMP","",$valor);
+    // $valor = str_ireplace(" OR ","",$valor);
+    $valor = str_ireplace("%","",$valor);
+    $valor = str_ireplace("LIKE","",$valor);
+    $valor = str_ireplace("--","",$valor);
+    $valor = str_ireplace("^","",$valor);
+    $valor = str_ireplace("[","",$valor);
+    $valor = str_ireplace("]","",$valor);	
+    $valor = str_ireplace("!","",$valor);
+    $valor = str_ireplace("¡","",$valor);
+    $valor = str_ireplace("?","",$valor);
+    $valor = str_ireplace("=","",$valor);
+    $valor = str_ireplace("&","",$valor);
+    $valor = str_ireplace("<SCRIPT>","",$valor);
+    $valor = str_ireplace("<script>","",$valor);
+    $valor = str_ireplace(">","",$valor);
+    $valor = str_ireplace("<","",$valor);
+    
+    return $valor;
+}
 
 
-
-    function SESSION_init($id, $user, $session_name, $session_comentario, $ip){
-        require("config.php");	
-        $sql = "INSERT INTO sessiones (id, session_name,  usuario, fecha, hora, comentarios,ipcliente) 
-        VALUES ('".$id."', '".$session_name."', '".$user."', '".$fecha."', '".$hora."', '".$session_comentario."', '".$ip."')";
-        // mensaje($sql,'login.php');
-            if ($db0->query($sql) == TRUE)
-                {return TRUE;}
-            else {return FALSE;}
+function LimpiarVAR_FrontEnd($input) {
+    
+    $search = array(
+    '@<script[^>]*?>.*?</script>@si',   // Elimina javascript
+    '@<[\/\!]*?[^<>]*?>@si',            // Elimina las etiquetas HTML
+    '@<style[^>]*?>.*?</style>@siU',    // Elimina las etiquetas de estilo
+    '@<![\s\S]*?--[ \t\n\r]*>@'         // Elimina los comentarios multi-línea
+    );
+    
+    $output = preg_replace($search, '', $input);
+    return $output;
     }
     
-    
-    function SESSION_close($id){
-        require("config.php");
-        $sql="UPDATE sessiones  SET cierre_fecha='".$fecha."', cierre_hora='".$hora."'  WHERE id='".$id."'";
-        // //echo $sql;
+function sanitize($input) {
+    if (is_array($input)) {
+        foreach($input as $var=>$val) {
+            $output[$var] = sanitize($val);
+        }
+    }
+    else {
+        if (get_magic_quotes_gpc()) {
+            $input = stripslashes($input);
+        }
+        $input  = cleanInput($input);
+        $output = mysql_real_escape_string($input);
+    }
+    return $output;
+}
+
+
+
+
+function SESSION_init($id, $user, $session_name, $session_comentario, $ip){
+    require("config.php");	
+    $sql = "INSERT INTO sessiones (id, session_name,  usuario, fecha, hora, comentarios,ipcliente) 
+    VALUES ('".$id."', '".$session_name."', '".$user."', '".$fecha."', '".$hora."', '".$session_comentario."', '".$ip."')";
+    // mensaje($sql,'login.php');
         if ($db0->query($sql) == TRUE)
             {return TRUE;}
         else {return FALSE;}
+}
+
+
+function SESSION_close($id){
+    require("config.php");
+    $sql="UPDATE sessiones  SET cierre_fecha='".$fecha."', cierre_hora='".$hora."'  WHERE id='".$id."'";
+    // //echo $sql;
+    if ($db0->query($sql) == TRUE)
+        {return TRUE;}
+    else {return FALSE;}
+}
+
+
+function SESSION_tiempo($id){
+    require("config.php");
+    $sql = 'SELECT TIMEDIFF(CURTIME(), hora) as transcurrido, sessiones.* from sessiones where id="'.$id.'"' ;
+    // //echo $sql;
+    $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
+            return $f['transcurrido'];
+    }else{
+            return FALSE;
     }
+        
+
+}
     
     
-    function SESSION_tiempo($id){
-        require("config.php");
-        $sql = 'SELECT TIMEDIFF(CURTIME(), hora) as transcurrido, sessiones.* from sessiones where id="'.$id.'"' ;
-        // //echo $sql;
-        $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
-                return $f['transcurrido'];
-        }else{
-                return FALSE;
-        }
-            
     
+function SESSION_tiempoRound($id){
+    require("config.php");
+    $sql = 'SELECT ROUND(TIMEDIFF(CURTIME(), hora)) as transcurrido, sessiones.* from sessiones where id="'.$id.'"' ;
+    // //echo $sql;
+    $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
+            return $f['transcurrido'];
+    }else{
+            return FALSE;
     }
-    
-    
-    
-    function SESSION_tiempoRound($id){
-        require("config.php");
-        $sql = 'SELECT ROUND(TIMEDIFF(CURTIME(), hora)) as transcurrido, sessiones.* from sessiones where id="'.$id.'"' ;
-        // //echo $sql;
-        $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
-                return $f['transcurrido'];
-        }else{
-                return FALSE;
-        }
-            
-    
-    }
+        
+
+}
     
 
 
-    function InfoEquipo()
+function InfoEquipo()
+{
+    $browser=array("IE","OPERA","MOZILLA","NETSCAPE","FIREFOX","SAFARI","CHROME");
+    $os=array("WIN","MAC","LINUX");
+    # definimos unos valores por defecto para el navegador y el sistema operativo
+    $info['browser'] = "OTHER";
+    $info['os'] = "OTHER";
+    # buscamos el navegador con su sistema operativo
+    foreach($browser as $parent)
     {
-        $browser=array("IE","OPERA","MOZILLA","NETSCAPE","FIREFOX","SAFARI","CHROME");
-        $os=array("WIN","MAC","LINUX");
-        # definimos unos valores por defecto para el navegador y el sistema operativo
-        $info['browser'] = "OTHER";
-        $info['os'] = "OTHER";
-        # buscamos el navegador con su sistema operativo
-        foreach($browser as $parent)
-        {
-        $s = strpos(strtoupper($_SERVER['HTTP_USER_AGENT']), $parent);
-        $f = $s + strlen($parent);
-        $version = substr($_SERVER['HTTP_USER_AGENT'], $f, 15);
-        $version = preg_replace('/[^0-9,.]/','',$version);
-        if ($s)
-        {
-        $info['browser'] = $parent;
-        $info['version'] = $version;
-        
-        }
-        }
-        # obtenemos el sistema operativo
-        foreach($os as $val)
-        {
-        if (strpos(strtoupper($_SERVER['HTTP_USER_AGENT']),$val)!==false)
-        $info['os'] = $val;
-        }
-        # devolvemos el array de valores
-        if (getenv('HTTP_CLIENT_IP')) {
-            $ip = getenv('HTTP_CLIENT_IP');
-          } elseif (getenv('HTTP_X_FORWARDED_FOR')) {
-            $ip = getenv('HTTP_X_FORWARDED_FOR');
-          } elseif (getenv('HTTP_X_FORWARDED')) {
-            $ip = getenv('HTTP_X_FORWARDED');
-          } elseif (getenv('HTTP_FORWARDED_FOR')) {
-            $ip = getenv('HTTP_FORWARDED_FOR');
-          } elseif (getenv('HTTP_FORWARDED')) {
-            $ip = getenv('HTTP_FORWARDED');
-          } else {
-            // Método por defecto de obtener la IP del usuario
-            // Si se utiliza un proxy, esto nos daría la IP del proxy
-            // y no la IP real del usuario.
-            $ip = $_SERVER['REMOTE_ADDR'];
-          }
-        //echo getenv('HTTP_CLIENT_IP');
-        //echo getenv('HTTP_X_FORWADED_FOR');
-        //echo getenv('REMOTE_ADDR');
-        $infofull="";
-        //$infofull = $infofull. "Usuario: ".gethostname()."<br>";
-        $infofull = $infofull. "SO:".$info['os'].",";
-        $infofull = $infofull. "Navegador: ".$info['browser'].",";
-        $infofull = $infofull. "Version:".$info['version']."";
-        // $infofull = $infofull. "".$_SERVER['HTTP_USER_AGENT']."<br>";
-        
-        $red = "";
-        // if ($ip <> '' ){$red = $red."ip:".$ip;	}
-        if (strlen(getenv('HTTP_CLIENT_IP')) > 3 ){$red = $red." ".getenv('HTTP_CLIENT_IP');}
-        if (strlen(getenv('HTTP_X_FORWADED_FOR')) > 3 ){$red = $red.", ".getenv('HTTP_X_FORWADED_FOR');}
-        if (strlen(getenv('REMOTE_ADDR')) > 3 ){$red = $red.", ".getenv('REMOTE_ADDR');}
+    $s = strpos(strtoupper($_SERVER['HTTP_USER_AGENT']), $parent);
+    $f = $s + strlen($parent);
+    $version = substr($_SERVER['HTTP_USER_AGENT'], $f, 15);
+    $version = preg_replace('/[^0-9,.]/','',$version);
+    if ($s)
+    {
+    $info['browser'] = $parent;
+    $info['version'] = $version;
     
-        if ($red <> ''){
-            $infofull = $infofull.", Red: (".$red.")";
-        }
-        
-        
-        
-        
-        return $infofull;
     }
+    }
+    # obtenemos el sistema operativo
+    foreach($os as $val)
+    {
+    if (strpos(strtoupper($_SERVER['HTTP_USER_AGENT']),$val)!==false)
+    $info['os'] = $val;
+    }
+    # devolvemos el array de valores
+    if (getenv('HTTP_CLIENT_IP')) {
+        $ip = getenv('HTTP_CLIENT_IP');
+        } elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+        $ip = getenv('HTTP_X_FORWARDED_FOR');
+        } elseif (getenv('HTTP_X_FORWARDED')) {
+        $ip = getenv('HTTP_X_FORWARDED');
+        } elseif (getenv('HTTP_FORWARDED_FOR')) {
+        $ip = getenv('HTTP_FORWARDED_FOR');
+        } elseif (getenv('HTTP_FORWARDED')) {
+        $ip = getenv('HTTP_FORWARDED');
+        } else {
+        // Método por defecto de obtener la IP del usuario
+        // Si se utiliza un proxy, esto nos daría la IP del proxy
+        // y no la IP real del usuario.
+        $ip = $_SERVER['REMOTE_ADDR'];
+        }
+    //echo getenv('HTTP_CLIENT_IP');
+    //echo getenv('HTTP_X_FORWADED_FOR');
+    //echo getenv('REMOTE_ADDR');
+    $infofull="";
+    //$infofull = $infofull. "Usuario: ".gethostname()."<br>";
+    $infofull = $infofull. "SO:".$info['os'].",";
+    $infofull = $infofull. "Navegador: ".$info['browser'].",";
+    $infofull = $infofull. "Version:".$info['version']."";
+    // $infofull = $infofull. "".$_SERVER['HTTP_USER_AGENT']."<br>";
+    
+    $red = "";
+    // if ($ip <> '' ){$red = $red."ip:".$ip;	}
+    if (strlen(getenv('HTTP_CLIENT_IP')) > 3 ){$red = $red." ".getenv('HTTP_CLIENT_IP');}
+    if (strlen(getenv('HTTP_X_FORWADED_FOR')) > 3 ){$red = $red.", ".getenv('HTTP_X_FORWADED_FOR');}
+    if (strlen(getenv('REMOTE_ADDR')) > 3 ){$red = $red.", ".getenv('REMOTE_ADDR');}
+
+    if ($red <> ''){
+        $infofull = $infofull.", Red: (".$red.")";
+    }
+    
+    
+    
+    
+    return $infofull;
+}
+
+    
+function UserName($IdUser){
+    require("config.php");	
+    $sql = "select * from empleados where IdUser='".$IdUser."' and estado=''";
+    
+    $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
+            return $f['nombre'];
+    }else{
+            return '';
+    }
+        
+
+
+}
+
+function SanPedro($IdApp,$IdUser){
+require("config.php");
+$sql = "SELECT * FROM apps_seguridad WHERE (IdUser='".$IdUser."' AND idapp='".$IdApp."' )";
+$rc= $db0 -> query($sql);
+if($f = $rc -> fetch_array())
+    {
+    UX_apps_update($IdApp,$IdUser);//guarda la experiencia del usuario
+    return TRUE;
+
+    }
+else
+    { //historia($usuario, "Se le nego el acceso a la aplicacion con ID ".$idapp); 
+        return FALSE;
+    }
+}
+
+
+function UX_apps($IdApp, $IdUser){ //consulta experiencia del usuario
+require("config.php");		
+    $sql = "SELECT	* from ux_apps where idapp='".$IdApp."' and iduser='".$IdUser."'";
+        $rc= $db0 -> query($sql); if($f = $rc -> fetch_array())
+        {return $f['c'];	}
+        else {return  0;}
+    
+}
+    
+function UX_apps_update($IdApp, $IdUser){//actualizar sd
+require("config.php");		
+$sql = "SELECT	* from ux_apps where idapp='".$IdApp."' and iduser='".$IdUser."'";
+$rc= $db0 -> query($sql); if($f = $rc -> fetch_array())
+    {//update
+        $c = UX_apps($IdApp, $IdUser) + 1;
+        $sql="UPDATE ux_apps SET c='".$c."' WHERE idapp='".$IdApp."' and iduser='".$IdUser."'";
+        if ($db0->query($sql) == TRUE)
+        {return TRUE;}
+        else {return FALSE;}
+
+    } else { // insert
+        $sql = "INSERT INTO ux_apps(idapp, iduser, c, fecha) VALUES ('".$IdApp."', '".$IdUser."', 1, '".$fecha."')";
+        if ($conexion->query($sql) == TRUE)
+            {return TRUE;}
+        else {return FALSE;}
+
+    }
+
+
+
+
+}
+    
+    
+
 ?>

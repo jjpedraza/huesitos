@@ -5,7 +5,65 @@
 @font-face{font-family:"Cursiva";src:url("Windsong.ttf") format("truetype")}
 @font-face{font-family:"Informal";src:url("CFCrayons-Regular.ttf") format("truetype")}
 @font-face{font-family:"Bold";src:url("OpenSans-ExtraBold.ttf") format("truetype")}
+#MenuVertical{
+	/* display:grid;
+	grid-template-columns:100%;
+	grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; */
+	margin:0px;align-items:stretch;justify-items:stretch;justify-content:center;align-content:center;
 
+
+    position: fixed;
+    left: 0px; z-index: 5000;
+    top:0px;
+
+    width:60px; height: 100%;
+  
+	background-color: rgba(117, 114, 114, 0.71);
+    -webkit-box-shadow: inset -9px 0px 18px -5px rgba(0,0,0,0.58);
+    -moz-box-shadow: inset -9px 0px 18px -5px rgba(0,0,0,0.58);
+	box-shadow: inset -9px 0px 18px -5px rgba(0,0,0,0.58);
+	overflow: hidden;
+	transition:all .5s ease-in-out;
+    
+}
+#MenuVertical:hover {
+	/* overflow-x: auto; */
+	overflow-y: auto;
+}
+#MenuVertical img {
+    width: 100%;
+
+}
+#MenuVertical article {
+	background-color: rgba(0, 0, 0, 0.05);
+	
+	
+}
+
+.MenuIconos {
+	filter: grayscale(0%) saturate(0) brightness(200%) contrast(100%);
+	-webkit-filter: grayscale(0%) saturate(0%) brightness(200%) contrast(100%);
+	display: block;
+	
+}
+.MenuIconos:hover {
+	filter: grayscale(0%) saturate(100%) brightness(100%) contrast(100%);
+	-webkit-filter: grayscale(0%) saturate(100%) brightness(100%) contrast(100%);
+	background-color: white;
+	border-radius: 5px;
+	
+	z-index: 2000;
+	
+	
+	
+}
+
+footer{
+	background-color:rgba(0, 0, 0, 0.53);
+	color:white;
+	width:100%;
+	
+}
 #Login h1 {
 	color: #FFFFFF;
 	text-shadow: #474747 3px 5px 2px;
@@ -39,9 +97,10 @@
 }
 body {
 	margin: 0px;
-	background-color: #fafafa;
-	color: gray;
+	background-color: #dfdfdf;
+	color: rgb(93, 93, 93);
 	font-family: Regular;
+	background-image: url('https://source.unsplash.com/random/1920x1080/?wallpaper');
 }
 
 hr {
@@ -128,8 +187,8 @@ form input {
 
 #BarraTitulo{
 	width:100%;
-	background-color:rgba(0, 0, 0, 0.05);
-	box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.2);
+	background-color: rgba(255, 255, 255, 0.7);
+	box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -144,7 +203,7 @@ margin-top:30px;
 	overflow:hidden;
 	margin:5px;
 	border-radius:4px;
-	background-color:rgb(241, 241, 241);
+	background-color: rgba(241, 241, 241, 0.9);
 	
 }
 .aplicaciones label{position:relative;top:0px}
