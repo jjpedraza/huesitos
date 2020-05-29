@@ -2,7 +2,12 @@
 //AUTORIZACION PARA ADMINISTRADOR
 session_start();	
 if (isset($_SESSION['IdUser'])){
-	require("config.php");
+	if (isset($_GET['x'])){
+		require("../config.php");
+	} else {
+		require("config.php");
+	}
+	
 	// require("components.php");
 	
 	//SENTINELA DE SESSION
@@ -77,7 +82,12 @@ function LogOut(){
 
 
 function SESSION_Validate($id){ // solo existe en seguridad
-    require("config.php");
+	if (isset($_GET['x'])){
+		require("../config.php");
+	} else {
+		require("config.php");
+	}
+    // require("config.php");
     $sql = "select  count(*) as n  from sessiones 
 	where id='".$id."' and cierre_fecha = '0000-00-00'" ;
     // echo $sql;
@@ -98,7 +108,12 @@ function SESSION_Validate($id){ // solo existe en seguridad
 
 
 function SESSION_initRegenerate($id, $user, $session_name, $session_comentario){
-	require("config.php");	
+	if (isset($_GET['x'])){
+		require("../config.php");
+	} else {
+		require("config.php");
+	}
+	// require("config.php");	
 	$sql = "INSERT INTO sessiones (id, session_name,  usuario, fecha, hora, comentarios) 
 	VALUES ('".$id."', '".$session_name."', '".$user."', '".$fecha."', '".$hora."', '".$session_comentario."')";
 	// echo $sql;
@@ -137,7 +152,12 @@ function url_origin($s, $use_forwarded_host=false) {
   
 
   function SESSION_closeRegenerate($id){
-	require("config.php");
+	if (isset($_GET['x'])){
+		require("../config.php");
+	} else {
+		require("config.php");
+	}
+	// require("config.php");
 	$sql="UPDATE sessiones  SET cierre_fecha='".$fecha."', cierre_hora='".$hora."'  WHERE id='".$id."'";
 	// //echo $sql;
 	if ($db0->query($sql) == TRUE)

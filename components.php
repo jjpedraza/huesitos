@@ -767,7 +767,7 @@ function InfoEquipo()
     
 function UserName($IdUser){
     require("config.php");	
-    $sql = "select * from empleados where IdUser='".$IdUser."' and estado=''";
+    $sql = "select * from empleados where IdUser='".$IdUser."' and IdEstadoLaboral=0";
     
     $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
             return $f['nombre'];

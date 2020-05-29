@@ -7,7 +7,7 @@ if (isset($_GET['home'])){//principal
    >";
     echo "<tr>";    
     echo "<td width=200px>";
-    echo "<a href='?home='><img src='".$LogoFile."' class='Logo'></a>";
+    echo "<a href='".$dir."?home='><img src='".$LogoFile."' class='Logo'></a>";
     echo "</td>";
 
     echo "<td align=center valing=top class='HomeTitulo'>";
@@ -101,16 +101,16 @@ if (isset($_GET['home'])){//principal
     >";
     echo '
 	<tr><td valing=top align=center>
-    <a href="index.php?home=" title="Haga clic para ir a la pagina principal" style="
+    <a href="'.$dir.'"index.php?home=" title="Haga clic para ir a la pagina principal" style="
 
     " id="LogoTopVertical"
     style="";
     >	
     
-    <img  src="img/logo_vertical.png" 
+    <img  src="'.$dir.'img/logo_vertical.png" 
     style="width: 60px;" id="xlogo_vertical" title="Haga clic aqui para ir al menu principal">
     
-    <img  src="img/logo_vertical2.png" 
+    <img  src="'.$dir.'img/logo_vertical2.png" 
     style="width:60px; display:none;" id="xlogo_vertical2" title="Haga clic aqui para ir al menu principal">
 
     </a>
@@ -141,7 +141,7 @@ if (isset($_GET['home'])){//principal
         '
         
         >";
-        echo "<img src='icons/".$fApp['AppIcono']."' style='width:90%'>";
+        echo "<img src='".$dir."icons/".$fApp['AppIcono']."' style='width:90%'>";
         // echo $fApp['IdApp']." - ".$fApp['ux'];
         echo "</a></td>";
         // echo "<td>";
@@ -161,7 +161,7 @@ if (isset($_GET['home'])){//principal
     echo "<tr>";
     echo "<td valign=bottom align=center height=50px>";
     echo "<a href='logout.php' title='Haga clic aqui para Cerrar Cesion'>";
-        echo "<img src='icons/salir.png' style='width:90%;'>";
+        echo "<img src='".$dir."icons/salir.png' style='width:90%;'>";
         // echo "<b>Cerrar Sesión</b>";
         echo "</a>";
     echo "</tr>";
@@ -175,7 +175,7 @@ if (isset($_GET['home'])){//principal
 
 ?>
 <audio id="AudioVertical" style="display:none;">
-    <source src="./audios/speech.wav" type="audio/wav">
+    <source src="<?php echo $dir;?>./audios/speech.wav" type="audio/wav">
 </audio>
 <script>
 $(document).ready(function(){

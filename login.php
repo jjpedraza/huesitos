@@ -48,11 +48,11 @@ if (isset($_POST['FormLogin'])){
     
 	$sql = "select a.*    
     from empleados a where 
-    IdUser='".$txtUser."' and estado=''";
+    IdUser='".$txtUser."' and IdEstadoLaboral=0";
     $rc= $db0 -> query($sql);
 	if($f = $rc -> fetch_array())
 	{                
-        if ($f['nip']==$txtNIP){
+        if ($f['NIP']==$txtNIP){
 
                 $IdUser = $f['IdUser'];	// variable de entorno      
                 session_start();    
@@ -64,7 +64,7 @@ if (isset($_POST['FormLogin'])){
                 
                 // historia($nitavu,'Acceso TransparenciaGo'.InfoEquipo().'');			    
                 SESSION_init(session_id(), $IdUser, $SesionName, InfoEquipo(), "");    
-                echo '<script>window.location.replace("index.php")</script>'; 
+                echo '<script>window.location.replace("index.php?home=")</script>'; 
             
         } else {
             Toast("NIP Incorrecto",2,"");
