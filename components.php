@@ -843,7 +843,7 @@ $rc= $db0 -> query($sql); if($f = $rc -> fetch_array())
 
     } else { // insert
         $sql = "INSERT INTO ux_apps(idapp, iduser, c, fecha) VALUES ('".$IdApp."', '".$IdUser."', 1, '".$fecha."')";
-        if ($conexion->query($sql) == TRUE)
+        if ($db0->query($sql) == TRUE)
             {return TRUE;}
         else {return FALSE;}
 
@@ -854,6 +854,34 @@ $rc= $db0 -> query($sql); if($f = $rc -> fetch_array())
 
 }
     
+  
+function MsgBlock($mensaje, $tipo){
+
+
+switch ($tipo) {
+    case 0: //Default
+        echo '<div id="modal_oscuro"></div><div id="mensaje">';
+        echo '<p>'.$mensaje.'</p>';
+        // echo '<a class="btn btn-Primary" href="'.$link.'">Aceptar</a>';
+        echo '</div>';
+        break;
+    case 1: //Error
+        echo '<div id="modal_error"></div><div id="mensaje">';
+        echo '<p>'.$mensaje.'</p>';
+        // echo '<a class="btn btn-Primary" href="'.$link.'">Aceptar</a>';
+        echo '</div>';
+        break;
+
+   
     
+        
+
+}
+
+
+
+
+}
+      
 
 ?>
