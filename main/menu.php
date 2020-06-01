@@ -63,7 +63,7 @@ if (isset($_GET['home'])){//principal
                 echo "<article>";
                     echo "<table width=100% border=0>";
                     $title="IdApp = ".$fApp['IdApp'].", Tienes acceso desde ".$fApp['fecha_autorizacion'].", Nivel=".$fApp['nivel'];    
-                    $AppVinculo = $fApp['AppVinculo'];
+                    $AppVinculo = $fApp['AppVinculo']."";
                     echo "<tr title='".$title."'>";
                     echo "<td width=50px><a href='".$AppVinculo."' title='Haga clic aqui para Entrar a esta Aplicacion'>
                     <img src='icons/".$fApp['AppIcono']."' style='width:32px'></a></td>";
@@ -100,8 +100,8 @@ if (isset($_GET['home'])){//principal
     '
     >";
     echo '
-	<tr><td valing=top align=center>
-    <a href="'.$dir.'"index.php?home=" title="Haga clic para ir a la pagina principal" style="
+	<tr><td valing=top align=center valign=top>
+    <a href="'.$dir.'index.php?home=" title="Haga clic para ir a la pagina principal" style="
 
     " id="LogoTopVertical"
     style="";
@@ -134,7 +134,7 @@ if (isset($_GET['home'])){//principal
         $title=$fApp['AppNombre']." | IdApp = ".$fApp['IdApp'].", Tienes acceso desde ".$fApp['fecha_autorizacion'].", Nivel=".$fApp['nivel']."";    
         $AppVinculo = $fApp['AppVinculo'];
         echo "<tr title='".$title."'>";
-        echo "<td valign=middle align=center><a href='".$AppVinculo."' title='".$title."'
+        echo "<td valign=top align=center><a href='".$AppVinculo."' title='".$title."'
         class='MenuIconos'
         style='
      

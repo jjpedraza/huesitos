@@ -770,7 +770,7 @@ function UserName($IdUser){
     $sql = "select * from empleados where IdUser='".$IdUser."' and IdEstadoLaboral=0";
     
     $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
-            return $f['nombre'];
+            return $f['Nombre']." ".$f['Paterno']." ".$f['Materno'];
     }else{
             return '';
     }
