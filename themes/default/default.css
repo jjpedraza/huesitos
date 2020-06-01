@@ -5,6 +5,31 @@
 @font-face{font-family:"Cursiva";src:url("Windsong.ttf") format("truetype")}
 @font-face{font-family:"Informal";src:url("CFCrayons-Regular.ttf") format("truetype")}
 @font-face{font-family:"Bold";src:url("OpenSans-ExtraBold.ttf") format("truetype")}
+
+header {
+width: 100%;
+background-color: rgba(255, 255, 255, 0.93);
+display: inline-block;
+text-align: center;
+height: 82px;
+box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.69);
+}
+header cite {
+	font-size: 8pt;
+	color:gray;
+}
+
+header table {
+
+
+	/* background-color: rgba(255, 255, 255, 0.363); */
+	border-radius: 10px;
+	
+}
+header img {
+	width: 50px;
+
+}
 #MenuVertical{
 	/* display:grid;
 	grid-template-columns:100%;
@@ -100,7 +125,9 @@ body {
 	background-color: #dfdfdf;
 	color: rgb(93, 93, 93);
 	font-family: Regular;
-	background-image: url('https://source.unsplash.com/random/1920x1080/?nature');
+	/* background-image: url('https://source.unsplash.com/random/1920x1080/?nature'); */
+	background-image: url('../../w4llp4p3r/?q=huesitos');
+	background-size: cover;
 }
 
 hr {
@@ -308,5 +335,8 @@ form input {
 	#BarraTitulo img {
 		filter: grayscale(50%) saturate(0) brightness(200%) contrast(189%);
 		-webkit-filter: grayscale(0%) saturate(0) brightness(900%) contrast(100%);
+	}
+	body {
+		background-size: auto;
 	}
 }

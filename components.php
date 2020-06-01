@@ -765,6 +765,31 @@ function InfoEquipo()
 }
 
     
+function HeaderApp($IdApp){
+    require("config.php");	
+    $sql = "select * from apps where IdApp='".$IdApp."'";
+    
+    $headerApp = "";
+    $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
+        
+        $headerApp = $headerApp . "<header>";
+        $headerApp = $headerApp . "<table border=0 width=100%><tr>";
+        $headerApp = $headerApp . "<td></td>";
+        $headerApp = $headerApp . "<td  align=center valign=midle><b>".$f['nombre']."</b><br>";
+        $headerApp = $headerApp . "<cite>".$f['descripcion']."</cite></td>";
+        $headerApp = $headerApp . "<td width=50px align=center valign=midle><image><img src='../icons/".$f['icono']."'></image></td>";
+        $headerApp = $headerApp . "</tr></table></header>";
+
+    }else{
+            
+    }
+    echo $headerApp;
+        
+
+
+}
+
+
 function UserName($IdUser){
     require("config.php");	
     $sql = "select * from empleados where IdUser='".$IdUser."' and IdEstadoLaboral=0";
