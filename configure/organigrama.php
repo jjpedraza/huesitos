@@ -6,7 +6,13 @@ $IdApp = "0";
 if ( SanPedro($IdApp,$IdUser) == TRUE){
     HeaderApp($IdApp);
 
-    
+    echo "<secion id='' class='Contenido'>";
+
+    echo "</section>";
+
+
+
+
     
 } else {
     MsgBlock("No tienes acceso a esta aplicacion", 1);

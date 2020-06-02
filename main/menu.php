@@ -208,5 +208,11 @@ function VerticalRestaurar(){
 	$("#AudioVertical")[0].play();
 }
 </script>
+</div>
 
+<div id='PreLoader'>
+    <div id='Loader'>
+        <img src='../img/loader_classic.gif'><br>
+        <!-- <cite><b>Espera por favor</b>, Procesando... </cite> -->
+    </div>
 </div>

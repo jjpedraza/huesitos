@@ -884,4 +884,9 @@ switch ($tipo) {
 }
       
 
+function Form_Insertar($Tabla, $IdBd){
+    require("config.php");	
+
+}
+
 ?>
