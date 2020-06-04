@@ -774,10 +774,15 @@ function HeaderApp($IdApp){
         
         $headerApp = $headerApp . "<header>";
         $headerApp = $headerApp . "<table border=0 width=100%><tr>";
-        $headerApp = $headerApp . "<td></td>";
-        $headerApp = $headerApp . "<td  align=center valign=midle><b>".$f['nombre']."</b><br>";
+        $headerApp = $headerApp . "<td>";
+        $headerApp = $headerApp . "<div id='MenuMovil'>";
+        $headerApp = $headerApp . "<a href='../index.php?home='><img src='../icons/home_movil.png' style='width:50px;'></a>";
+        $headerApp = $headerApp . "</div>";
+        $headerApp = $headerApp . "</td>";
+
+        $headerApp = $headerApp . "<td  align=center valign=midle><b >".$f['nombre']."</b><br>";
         $headerApp = $headerApp . "<cite>".$f['descripcion']."</cite></td>";
-        $headerApp = $headerApp . "<td width=50px align=center valign=midle><image><img src='../icons/".$f['icono']."'></image></td>";
+        $headerApp = $headerApp . "<td width=50px align=center valign=midle><image><a title='Haga clic aquí para recargar esta App' href='../".$f['vinculo']."'><img src='../icons/".$f['icono']."'></a></image></td>";
         $headerApp = $headerApp . "</tr></table></header>";
 
     }else{
@@ -888,5 +893,201 @@ function Form_Insertar($Tabla, $IdBd){
     require("config.php");	
 
 }
+
+
+//====================FUNCIONES TOKEN
+function MiToken_valida($Token, $usuario, $descripcion){
+    require("config.php");
+    // $Token = MiToken_generate();
+    $sql = "SELECT * from  tokens WHERE user='$usuario' and token='$Token' and descripcion='".$descripcion."'";    
+    // echo $sql;
+    $rc= $db0 -> query($sql);
+    if($f = $rc -> fetch_array()){
+        if ($f['activo'] == 1){ //cerrado
+            return FALSE;
+        } else{ //abierto
+            return TRUE;
+        }
+        
+    }
+    else 
+    {
+        return FALSE;
+    }
+    
+}
+function MiToken($usuario, $descripcion){
+    require("config.php");
+    $sql = "SELECT * from tokens WHERE user='$usuario' and activo='0' and descripcion = '".$descripcion."'";
+    $rc= $db0 -> query($sql);
+    if($f = $rc -> fetch_array())
+	{
+        return $f['token'];
+    } else {
+        return '';
+    }
+}
+function MiToken_Init($usuario, $descripcion){
+    require("config.php");
+    $sql = "SELECT count(*) as n from tokens WHERE user='$usuario' and activo='0'";
+    // echo $sql;
+    $rc= $db0 -> query($sql);
+    if($rc){
+        if($f = $rc -> fetch_array())
+	    {
+            //echo $f['n'];
+            if ($f['n'] == 0 )   {
+                // si no tiene continuamos
+				$Token = MiToken_generate();
+				//echo $Token;
+                $sql = "INSERT INTO tokens (id, user, descripcion, token, fecha, hora, activo, cierre_fecha, cierre_hora)
+                VALUES ('','$usuario', '$descripcion', '$Token','$fecha', '$hora','0','','')";
+                //echo $sql;
+                if ($db0->query($sql) == TRUE)
+                {return $Token;} else {return '';}
+      
+           } else { return '';}
+        } else {return '';}
+    }
+   
+    
+}
+
+function MiToken_generate(){
+    $len = 16;
+    $cadena_base =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $cadena_base .= '0123456789' ;
+    // $cadena_base .= '!@#%^&*()_,./<>?;:[]{}\|=+';
+   
+    $password = '';
+    $limite = strlen($cadena_base) - 1;
+   
+    for ($i=0; $i < $len; $i++)
+      $password .= $cadena_base[rand(0, $limite)];
+   
+    return $password;
+}
+
+
+
+function MiToken_Close($usuario, $Token){
+    require("config.php");
+    
+    $sql = "UPDATE tokens
+        SET activo='1',
+        cierre_fecha='".$fecha."',
+        cierre_hora='".$hora."'
+        WHERE
+            user='$usuario' and token='$Token'";
+    // echo $sql;
+    
+    if ($db0->query($sql) == TRUE)
+    {
+        return TRUE;
+    }
+
+    else 
+    {
+        return FALSE;
+    }
+
+}
+
+
+
+
+function MiToken_CloseALL($usuario){
+    require("config.php");
+    
+    $sql = "UPDATE tokens
+        SET activo='1',
+        cierre_fecha='".$fecha."',
+        cierre_hora='".$hora."'
+        
+        WHERE
+            user='$usuario'";
+    // echo $sql;
+    
+    if ($db0->query($sql) == TRUE)
+    {
+        return TRUE;
+    }
+
+    else 
+    {
+        return FALSE;
+    }
+
+}
+
+function LimpiaVariable($DatoVariable){    
+
+    if (ValidaVAR($DatoVariable)==TRUE){
+        return LimpiarVAR($DatoVariable);
+    } else {
+        return "";
+    }
+
+}
+
+function Historia($IdUser, $IdApp, $Descripcion){
+require("config.php");
+$Descripcion = addslashes($Descripcion);    
+$sql = "INSERT INTO historia
+(IdUser, fecha, hora, Descripcion, IdApp)
+    VALUES
+    ('$IdUser', '$fecha', '$hora','$Descripcion','$IdApp')";
+
+if ($db0->query($sql) == TRUE)
+{	//echo "ok";
+    return 'TRUE';
+}
+    else
+{	////echo $sql;
+    return 'FALSE';
+}
+}
+
+
+
+function Refresh($page){
+    //header('location:$page');
+    echo "<script> 
+    
+    window.location.replace('$page'); 
+    
+    </script>";
+        
+}
+
+function AppNivel($IdUser, $IdApp){
+    require("config.php");
+    $sql = "select nivel from apps_seguridad where IdUser='".$IdUser."' and IdApp='".$IdApp."'";
+    $rc= $db0 -> query($sql);
+    if($f = $rc -> fetch_array())
+	{
+        return $f['nivel'];
+    } else {
+        return '';
+    }
+}
+
+function GuardarDatoSimple($Tabla, $Llave, $LlaveValor, $Campo, $Valor){
+require("config.php");    
+$sql = "UPDATE ".$Tabla." SET ".$Campo."='".$Valor."' WHERE ".$Llave."='".$LlaveValor."'";
+if ($db0->query($sql) == TRUE)
+{	//echo "ok";
+    
+    return 'TRUE';
+}
+    else
+{	////echo $sql;
+    Toast("ERROR al guardar ".$Campo."=".$Valor."",2,"");
+    return 'FALSE';
+    
+}
+
+}
+
 
 ?>

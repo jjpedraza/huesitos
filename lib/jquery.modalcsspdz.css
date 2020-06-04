@@ -30,35 +30,21 @@
 .modal h1, .modal h2, .modal h3, .modal h4, .modal h5{
 
 	text-align: left;
-
-	background-color: #0064A7;
-	
+	background-color: #310821;
 	font-size: 12pt;
-	
 	color: white;
-	
 	margin-top: -15px;
-	
 	margin-left: -30px;
-	
-	border-top-left-radius: 7px;
-	
+	border-top-left-radius: 5px;
 	padding-left: 10px;
-	
-	text-transform: uppercase;
-	
-	font-family: "Compacta";
-	
+	text-transform: uppercase;	
 	margin-right: -30px;
-	
-	border-top-right-radius: 7px;
-
-	
+	border-top-right-radius: 5px;
 	border-bottom-style: solid;
-	
 	border-bottom-width: 3px;
-	
-	border-bottom-color: #c0da46;
+	border-bottom-color: #dbdbdb;
+	height: 25px;
+	font-family: Light;
 
 }
 .modal {
@@ -94,7 +80,7 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url('../icon/modal_close.png');
+	background-image: url('../icons/modal_close.png');
 	z-index: 5000;
 }
 

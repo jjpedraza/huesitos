@@ -39,6 +39,8 @@ echo '
 <script type="text/javascript" src="'.$dir.'lib/jquery.toast.min.js"></script>
 <link rel="stylesheet" type="text/css" href="'.$dir.'lib/datatables.min.css"/> 
 <script type="text/javascript" src="'.$dir.'lib/datatables.min.js"></script>
+<script src="'.$dir.'lib/jquery.modalpdz.js"></script> 
+<link rel="stylesheet" href="'.$dir.'lib/jquery.modalcsspdz.css" />
 ';
 
 ?>
