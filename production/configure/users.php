@@ -275,8 +275,38 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                 echo "<td align=left><b style='font-weight:bold;font-size:12pt;'>".$fNotA['AppNombre']."</b><br><cite>".$fNotA['AppDescripcion']." de ".
                 $fNotA['Categoria']."</cite><br></td>";
               
-                echo "<td width=50px>
-                <a href='' class='btn btn-Primary' style='width:20px'><img src='../icons/ok2.png' style=''></a>";
+                echo "<td width=350px>
+                <form action='users.php' method='GET'>
+                <input type='hidden' name='x' value=''>
+                <input type='hidden' name='IdUser' value='".$IdUser_Apps."'>
+                <input type='hidden' name='IdApp' value='".$fNotA['IdApp']."'>
+                
+                
+                <select name='nivel'
+                style='
+                    width:200px;
+                    display:inline-block;
+                    font-size:9pt;
+                    font-family:Light;
+                '
+                >
+                <option value='1'>Nivel 1 (Administrador Gral)</option>
+                <option value='2'>Nivel 2 (Administrador)</option>
+                <option value='3'>Nivel 3 (Operador)</option>
+                <option value='4'>Nivel 4 (Consulta)</option>
+                </select>
+
+                
+                <input
+                style='
+                    width:100px;
+                    display:inline-block;
+                '
+                type='submit' class='btn btn-Primary' value='Ok'>
+                
+                
+
+                </form>";
                 echo "</td>";
                 echo "</tr>";
                 $AppsConAcceso = $AppsConAcceso.$fNotA['IdApp'].",";
