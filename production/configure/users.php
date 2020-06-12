@@ -9,10 +9,39 @@ $Nivel = AppNivel($IdUser, $IdApp);
 if ( SanPedro($IdApp,$IdUser) == TRUE){
     HeaderApp($IdApp);    
     MiToken_Init($IdUser, $IdApp);
-    
-
     //ACCTIONS
-    if (isset($_GET['del']) and isset($_GET['idapp'])){
+
+    //Ortorgar acceso
+    if (isset($_GET['IdUser']) && isset($_GET['IdApp']) && isset($_GET['nivel']) ) {
+        $Add_IdUser = LimpiaVariable($_GET['IdUser']); 
+        $Add_IdApp = LimpiaVariable($_GET['IdApp']); 
+        $Add_nivel = LimpiaVariable($_GET['nivel']); 
+
+        $sql = "INSERT INTO apps_seguridad(IdUser, IdApp, nivel, quien_autorizo, fecha_autorizacion) 
+        VALUES (
+            '".$Add_IdUser."', 
+            '".$Add_IdApp."', 
+            '".$Add_nivel."',
+            '".$IdUser."',
+            '".$fecha."'
+            
+        )";
+        // echo $sql;
+
+        if ($db0->query($sql) == TRUE){                               
+            Historia($IdUser, $IdApp, 'Permiso otorgado correctamente a la IdApp '.$Add_IdApp.' a '.$Add_IdUser. ' con nivel '.$Add_nivel.': sql='.$sql);
+            Toast("Permiso guardado correctamente",1,"");
+        } else {
+            Toast("Error al guardar el permiso ",2,"");
+        }
+        // Refresh('');
+
+    } else {
+        // echo "no";
+    }
+
+    //ACCTIONS -<> Quitar acceso
+    if (isset($_GET['del']) and isset($_GET['idapp'])){ //quitar acceso
         $IdUserDel = LimpiaVariable($_GET['del']); 
         $IdAppDel = LimpiaVariable($_GET['idapp']); 
         $sql = "DELETE FROM apps_seguridad
@@ -22,7 +51,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
             //echo $sql;
 
         if ($db0->query($sql) == TRUE){                               
-            Historia($IdUser, $IdApp, 'Elimino el permiso del usuario ('.$IdUserDel.') '.$AppName($IdUserDel). ' de la app '.$IdAppDel.': sql='.$sql);
+            Historia($IdUser, $IdApp, 'Elimino el permiso del usuario ('.$IdUserDel.') '.UserName($IdUserDel). ' de la app '.$IdAppDel.': sql='.$sql);
             Toast("Permiso retirado ".$IdAppDel." | ".$IdUserDel." Correctamente",1,"");
         } else {
             Toast("Error al retirar el permiso al usuario ".$IdUserDel.".",2,"");
@@ -240,7 +269,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                 $fA['Categoria']."</cite><br></td>";
                 echo "<td align=left>Acceso de nivel ".$fA['nivel']." desde ".$fA['fecha_autorizacion']." por ".$fA['quien_autorizo']."</td>";
                 echo "<td width=50px>";
-                echo "<a href='?x=&del=".$fA['IdUser']."&idapp=".$fA['IdApp']."' class='btn btn-Danger' style='width:20px'><img src='../icons/cancel.png' style=''></a>";
+                echo "<a href='?x=&del=".$fA['IdUser']."&idapp=".$fA['IdApp']."&apps=".$fA['IdUser']."' class='btn btn-Danger' style='width:20px'><img src='../icons/cancel.png' style=''></a>";
                 echo "</td>";
                 echo "</tr>";
                 $AppsConAcceso = $AppsConAcceso.$fA['IdApp'].",";
@@ -279,6 +308,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                 <form action='users.php' method='GET'>
                 <input type='hidden' name='x' value=''>
                 <input type='hidden' name='IdUser' value='".$IdUser_Apps."'>
+                <input type='hidden' name='apps' value='".$IdUser_Apps."'>
                 <input type='hidden' name='IdApp' value='".$fNotA['IdApp']."'>
                 
                 
