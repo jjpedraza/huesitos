@@ -795,6 +795,23 @@ function HeaderApp($IdApp){
 }
 
 
+
+function AppNota($IdApp){
+    require("config.php");	
+    $sql = "select * from apps where idapp='".$IdApp."'";
+    
+    $r= $db0 -> query($sql); if($f = $r -> fetch_array()){
+            return $f['admin_comentario'];
+    }else{
+            return '';
+    }
+        
+
+
+}
+
+
+
 function UserName($IdUser){
     require("config.php");	
     $sql = "select * from empleados where IdUser='".$IdUser."' and IdEstadoLaboral=0";

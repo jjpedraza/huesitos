@@ -268,8 +268,9 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                 echo "<td align=left><b style='font-weight:bold;font-size:12pt;'>".$fA['AppNombre']."</b><br><cite>".$fA['AppDescripcion']." de ".
                 $fA['Categoria']."</cite><br></td>";
                 echo "<td align=left>Acceso de nivel ".$fA['nivel']." desde ".$fA['fecha_autorizacion']." por ".$fA['quien_autorizo']."</td>";
-                echo "<td width=50px>";
+                echo "<td width=30% >";
                 echo "<a href='?x=&del=".$fA['IdUser']."&idapp=".$fA['IdApp']."&apps=".$fA['IdUser']."' class='btn btn-Danger' style='width:20px'><img src='../icons/cancel.png' style=''></a>";
+                echo "<br><br><cite>".AppNota($fA['IdApp'])."</cite>";
                 echo "</td>";
                 echo "</tr>";
                 $AppsConAcceso = $AppsConAcceso.$fA['IdApp'].",";
@@ -337,6 +338,8 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                 
 
                 </form>";
+                
+                echo "<cite>".AppNota($fNotA['IdApp'])."</cite>";
                 echo "</td>";
                 echo "</tr>";
                 $AppsConAcceso = $AppsConAcceso.$fNotA['IdApp'].",";
