@@ -60,7 +60,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
     }
 
 
-    if (isset($_POST['btnFormUpdate'])){//clic en actualizar
+    if (isset($_POST['MbtnFormUpdate'])){//clic en actualizar
         $txtIdUser = LimpiaVariable($_POST['txtIdUser']); 
         $txtIdNombre = LimpiaVariable($_POST['txtIdNombre']); 
         $txtIdPaterno = LimpiaVariable($_POST['txtIdPaterno']); 
@@ -103,7 +103,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
             //Refresh('');
     }
 
-    if (isset($_POST['btnFormAdd'])) {//Click en Guardar
+    if (isset($_POST['MbtnFormAdd'])) {//Click en Guardar
         $txtIdUser = LimpiaVariable($_POST['txtIdUser']); 
         $txtIdNombre = LimpiaVariable($_POST['txtIdNombre']); 
         $txtIdPaterno = LimpiaVariable($_POST['txtIdPaterno']); 
@@ -237,7 +237,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
         
         
             echo "<label >Revise los datos antes de Actualizar:
-            <input type='submit' name='btnFormUpdate' value='Actualizar' class='btn btn-Primary'>
+            <input type='submit' name='MbtnFormUpdate' value='Actualizar' class='Mbtn btn-Primary'>
             </label>
             ";
 
@@ -268,8 +268,8 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                 echo "<td align=left><b style='font-weight:bold;font-size:12pt;'>".$fA['AppNombre']."</b><br><cite>".$fA['AppDescripcion']." de ".
                 $fA['Categoria']."</cite><br></td>";
                 echo "<td align=left>Acceso de nivel ".$fA['nivel']." desde ".$fA['fecha_autorizacion']." por ".$fA['quien_autorizo']."</td>";
-                echo "<td width=30% >";
-                echo "<a href='?x=&del=".$fA['IdUser']."&idapp=".$fA['IdApp']."&apps=".$fA['IdUser']."' class='btn btn-Danger' style='width:20px'><img src='../icons/cancel.png' style=''></a>";
+                echo "<td width=30% align=right>";
+                echo "<a href='?x=&del=".$fA['IdUser']."&idapp=".$fA['IdApp']."&apps=".$fA['IdUser']."' class='Mbtn btn-Danger' style='width:40px'><img src='../icons/cancel.png' style='width:20px;'></a>";
                 echo "<br><br><cite>".AppNota($fA['IdApp'])."</cite>";
                 echo "</td>";
                 echo "</tr>";
@@ -305,8 +305,8 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                 echo "<td align=left><b style='font-weight:bold;font-size:12pt;'>".$fNotA['AppNombre']."</b><br><cite>".$fNotA['AppDescripcion']." de ".
                 $fNotA['Categoria']."</cite><br></td>";
               
-                echo "<td width=350px>
-                <form action='users.php' method='GET'>
+                echo "<td width=350px align=right>
+                <form action='users.php' method='GET' style='text-align:right;'>
                 <input type='hidden' name='x' value=''>
                 <input type='hidden' name='IdUser' value='".$IdUser_Apps."'>
                 <input type='hidden' name='apps' value='".$IdUser_Apps."'>
@@ -333,7 +333,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
                     width:100px;
                     display:inline-block;
                 '
-                type='submit' class='btn btn-Primary' value='Ok'>
+                type='submit' class='Mbtn btn-Primary' value='Ok'>
                 
                 
 
@@ -442,7 +442,7 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
     echo "<label class='FormElementos'>Telefono Personal: <input type='text' id='txtTelefonoPersonal' name='txtTelefonoPersonal' placeholder='' value='' ></label>";
 
 
-    echo "<label>Vefique los datos:<input type='submit' name='btnFormAdd' value='Guardar' class='btn btn-Primary'></label>";
+    echo "<label>Vefique los datos:<input type='submit' name='MbtnFormAdd' value='Guardar' class='Mbtn btn-Primary'></label>";
     echo "</form>";
     echo "</div>";
 

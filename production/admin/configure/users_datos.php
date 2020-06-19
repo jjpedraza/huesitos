@@ -38,7 +38,7 @@ if (isset($_POST['IdUser']) and isset($_POST['IdApp'])){
 
 
             echo "<tr>";
-            echo "<td><a title='Haga clic para modificar la información de este usuario' href='?x=&update=".$f['IdUser']."' class='btn btn-Default' style='
+            echo "<td><a title='Haga clic para modificar la información de este usuario' href='?x=&update=".$f['IdUser']."' class='Mbtn btn-Default' style='
                 padding: 5px;
                 width: 90%;
                 display: inline-block;
@@ -47,7 +47,7 @@ if (isset($_POST['IdUser']) and isset($_POST['IdApp'])){
             echo "<td>".$f['NombreCompleto']."</td>";            
             echo "<td class='pc'>".$f['Puesto']."</td>";
             echo "<td class='pc'>".$f['Departamento']."</td>";
-            echo "<td><a href='?x=&apps=".$f['IdUser']."' class='btn btn-Default' style='margin:5px;display:inline-block;'>
+            echo "<td><a href='?x=&apps=".$f['IdUser']."' class='Mbtn btn-Default' style='margin:5px;display:inline-block;'>
             <img src='../icons/misapps.png' style='width:24px;'>
             </a></td>";
 

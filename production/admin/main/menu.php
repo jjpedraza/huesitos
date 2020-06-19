@@ -160,7 +160,7 @@ if (isset($_GET['home'])){//principal
 
     echo "<tr>";
     echo "<td valign=bottom align=center height=50px>";
-    echo "<a href='logout.php' title='Haga clic aqui para Cerrar Cesion'>";
+    echo "<a href='".$dir."logout.php' title='Haga clic aqui para Cerrar Cesion'>";
         echo "<img src='".$dir."icons/salir.png' style='width:90%;'>";
         // echo "<b>Cerrar Sesión</b>";
         echo "</a>";
