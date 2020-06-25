@@ -1,11 +1,11 @@
 <?php
 if (isset($_GET['x'])){
-	include("seguridad.php");
+	// include("seguridad.php");
 	require("../config.php");
 	require("../components.php");
 	
 } else {
-	include("seguridad.php");
+	// include("seguridad.php");
 	require("./config.php");
 	require("./components.php");
 }
@@ -30,9 +30,17 @@ if (isset($_GET['x'])){
 	
 }
 
+
+echo '
+
+<script src="'.$dir.'lib/popper.min.js"></script>
+<script src="'.$dir.'lib/jquery-3.5.1.js"></script>
+<script src="'.$dir.'lib/bootstrap/js/bootstrap.min.js"></script>';
+
+
 echo '
 <link rel="stylesheet" href="'.$dir.$theme.'"/>
-<script src="'.$dir.'lib/jquery-3.3.1.js"></script> 
+
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 
 <link rel="stylesheet" type="text/css" href="'.$dir.'lib/bootstrap/css/bootstrap.css">
@@ -45,6 +53,7 @@ echo '
 ';
 
 ?>
+
 
 </head>
 <body>

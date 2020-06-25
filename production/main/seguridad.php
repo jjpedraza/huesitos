@@ -1,7 +1,7 @@
 <?php
-//AUTORIZACION PARA ADMINISTRADOR
+//AUTORIZACION PARA WEBSITE DEL USUARIO
 session_start();	
-if (isset($_SESSION['IdUser'])){
+if (isset($_SESSION['WbRIdUser'])){
 	if (isset($_GET['x'])){
 		require("../config.php");
 	} else {
@@ -16,14 +16,14 @@ if (isset($_SESSION['IdUser'])){
 
 		//actualizar el id de session
 		$id_sesion_antigua = session_id(); //<-- guardamos el id session actual
-		$IdUser = $_SESSION['IdUser']; //<-- Guardamos al usuario actual
+		$WbRIdUser = $_SESSION['WbRIdUser']; //<-- Guardamos al usuario actual
 		
 		
 		session_regenerate_id();$id_sesion_nueva = session_id(); //<-- regneramos el id de session		
-		$_SESSION['IdUser'] = $IdUser; //<- Pasamos los valores a la nueva session
+		$_SESSION['WbRIdUser'] = $WbRIdUser; //<- Pasamos los valores a la nueva session
 
 		SESSION_closeRegenerate($id_sesion_antigua); //<-- Cerramos la sessión actual
-		SESSION_initRegenerate($id_sesion_nueva, $IdUser, $SesionName, URLActual(), $MyIp); //<-- guardamos la nueva session
+		SESSION_initRegenerate($id_sesion_nueva, $WbRIdUser, $SesionName, URLActual(), $MyIp); //<-- guardamos la nueva session
 
 
 		//De esta manera la proxima vez que entren a un link detectara si esta activa la session, y si esta activa
@@ -33,7 +33,7 @@ if (isset($_SESSION['IdUser'])){
 	} else {
 		$_SESSION = array(); 
 		session_destroy();		
-		unset($IdUser);
+		unset($WbRIdUser);
 		header("location:login.php?info=Sesion Expirada");	
 	}
 

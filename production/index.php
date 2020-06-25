@@ -1,4 +1,7 @@
 <?php include ("main/head.php");?>
+
+
+
 <?php 
 include ("main/menu.php");
 // MiToken_CloseALL($IdUser);
@@ -33,7 +36,12 @@ include ("main/menu.php");
     <span class="sr-only">Next</span>
   </a>
 </div>
+    
 
+
+<?php
+
+?>
 
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

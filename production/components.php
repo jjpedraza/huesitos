@@ -1105,6 +1105,28 @@ if ($db0->query($sql) == TRUE)
 }
 
 }
+function GeoData($lat,$lon)
+{
+    // https://nominatim.openstreetmap.org/reverse?format=json&lat=23.7411286&lon=-99.1566962
+    $url = 'http://nominatim.openstreetmap.org/reverse?format=json&lat='.$lat.'&lon='.$lon;
+    // echo $url;
+    $context = stream_context_create(
+        array(
+            "http" => array(
+                "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            )
+        )
+    );
+    
+    $archivo_web = file_get_contents($url, false, $context);
+    $archivo = json_decode($archivo_web);
 
+    // echo $archivo_web."<hr>";
+    // var_dump($archivo);
+    // echo "<hr>";
+    // echo $archivo->address->{'city'};
+    return $archivo;
+
+}
 
 ?>
