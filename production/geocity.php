@@ -2,8 +2,8 @@
 require("components.php");
 $lat = LimpiaVariable($_GET['lat']); 
 $lon = LimpiaVariable($_GET['lon']); 
-$lat='25.805938';
-$lon='-97.592314';
+$lat='42.848675';
+$lon='-94.076689';
 
 
 //$Barrio =  GeoData($lat,$lon)->address->{'neighbourhood'};

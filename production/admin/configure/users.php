@@ -295,9 +295,11 @@ if ( SanPedro($IdApp,$IdUser) == TRUE){
             a.admin_comentario as Nota
 
             from apps a
-            where IdApp not in (".$AppsConAcceso.") and estado=0
+            where IdApp not in ('".$AppsConAcceso."') and estado=0
             ";
-            $rNotA= $db0 -> query($sql);
+            // echo $sql;
+            $rNotA = $db0 -> query($sql);
+
             echo "<table class='tabla'>";
             while($fNotA= $rNotA -> fetch_array()) {
                 echo "<tr>";

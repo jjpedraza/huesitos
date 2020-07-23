@@ -27,27 +27,41 @@
 	background-color: transparent
 }
 
-.modal h1, .modal h2, .modal h3, .modal h4, .modal h5{
+.MyModal h1, .MyModal h2, .MyModal h3, .MyModal h4, .MyModal h5{
 
 	text-align: left;
-	background-color: #310821;
+
+	background-color: #0064A7;
+	
 	font-size: 12pt;
+	
 	color: white;
+	
 	margin-top: -15px;
+	
 	margin-left: -30px;
-	border-top-left-radius: 5px;
+	
+	border-top-left-radius: 7px;
+	
 	padding-left: 10px;
-	text-transform: uppercase;	
+	
+	text-transform: uppercase;
+	
+	font-family: "Compacta";
+	
 	margin-right: -30px;
-	border-top-right-radius: 5px;
+	
+	border-top-right-radius: 7px;
+
+	
 	border-bottom-style: solid;
+	
 	border-bottom-width: 3px;
-	border-bottom-color: #dbdbdb;
-	height: 25px;
-	font-family: Light;
+	
+	border-bottom-color: #c0da46;
 
 }
-.modal {
+.MyModal {
 	display: none;
 	vertical-align: middle;
 	position: relative;
@@ -70,7 +84,7 @@
 	text-align: left;
 }
 
-.modal a.close-modal {
+.MyModal a.close-modal {
 	position: absolute;
     top: -19.5px;
     right: -1.5px;
@@ -80,7 +94,7 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url('../icons/modal_close.png');
+	background-image: url('../icon/modal_close.png');
 	z-index: 5000;
 }
 
@@ -147,7 +161,7 @@
 }
 
 @media only screen and (max-width:500px) {
-	.modal {
+	.MyModal {
 		width: 100%;
 		top: 30px;
 		max-width: 100%;

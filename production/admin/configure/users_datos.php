@@ -1,11 +1,12 @@
 <?php
+// include("../main/seguridad.php");
 require("../config.php");
 require("../components.php");
 
 //Validar Token
 
 if (isset($_POST['IdUser']) and isset($_POST['IdApp'])){
-
+    $IdUser = LimpiaVariable($_POST['IdUser']); 
     $IdApp = LimpiaVariable($_POST['IdApp']); 
     $MiToken = MiToken($IdUser, $IdApp); //Creamos Token al inciiar la app
 

@@ -96,8 +96,8 @@
 </div>
 
 <div id='geoInfo' style='display:none;'>
-<input type='hidden' id='lat' value='0'>
-<input type='hidden' id='lon' value='0'>
+<input type='hidden' id='Lat' value='0'>
+<input type='hidden' id='Lon' value='0'>
 
 </div>
 <script>
@@ -109,8 +109,8 @@
                 var lat = objPosition.coords.latitude;                
                 // content.innerHTML = "<p><strong>Latitud:</strong> " + lat + "</p><p><strong>Longitud:</strong> " + lon + "</p>";
                 $('#geo').hide();
-                $('#lat').val(lat);
-                $('#lon').val(lon);
+                $('#Lat').val(lat);
+                $('#Lon').val(lon);
                 // console.log(lat+'|'+lon);
                 Ciudad();
 
@@ -119,16 +119,18 @@
                 switch (objPositionError.code)
                 {
                     case objPositionError.PERMISSION_DENIED:
-                        content.innerHTML = "<strong>No se ha permitido el acceso a la posición del usuario.</strong> Es importante que nos conceda este permiso, para así ofrecerle el servicio. <a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a>";
+                      content.innerHTML = "<b>No aceptaste Geolocalizarte</b>. Esta funcion es importante  para que algunas aplicaciones funcionen correctamente, le recomendamos aceptarla.En caso de algun incoveniente, comunicarse al Area de Informatica.<a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a>";
                     break;
                     case objPositionError.POSITION_UNAVAILABLE:
-                        content.innerHTML = "<strong>No se ha podido acceder a la información de su posición</strong>. Es importante que nos conceda este permiso, para así ofrecerle el servicio.  <a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a>";
+                        
+                        content.innerHTML = "<b>Problema para Geolocalizarte</b>. Esta funcion es importante  para que algunas aplicaciones funcionen correctamente, le recomendamos aceptarla.En caso de algun incoveniente, comunicarse al Area de Informatica.<a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a>";
                     break;
                     case objPositionError.TIMEOUT:
-                        content.innerHTML = "<strong>El servicio ha tardado demasiado tiempo en responder.</strong> Es importante que nos conceda este permiso, para así ofrecerle el servicio.  <a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a>";
+                        
+                      content.innerHTML = "<b>Problema para Geolocalizarte</b>. Esta funcion es importante  para que algunas aplicaciones funcionen correctamente, le recomendamos aceptarla.En caso de algun incoveniente, comunicarse al Area de Informatica.<a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a>";
                     break;
                     default:
-                        content.innerHTML = "Error desconocido.";
+                    content.innerHTML = "<b>Problema para Geolocalizarte</b>. Esta funcion es importante  para que algunas aplicaciones funcionen correctamente, le recomendamos aceptarla.En caso de algun incoveniente, comunicarse al Area de Informatica.<a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a>";
                 }
             }, {
                 maximumAge: 75000,
